@@ -1,6 +1,6 @@
 from socket import *
 from datetime import datetime
-
+#to test locally use python -m aiosmtpd -n -d; will use localhost and port 8025; documentation at https://aiosmtpd.readthedocs.io/en/latest/manpage.html
 def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
@@ -9,10 +9,9 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     server=(mailserver, port)
     clientSocket = socket(AF_INET,SOCK_STREAM)
     clientSocket.connect(server)
-    # Fill in end
-    # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
+
     recv= clientSocket.recv(1024).decode()
-    #print(recv) #You can use these print statement to validate return codes from the server.
+
     if recv[:3] != '220':
         print('220 reply not received from server.')
 
